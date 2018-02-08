@@ -8,27 +8,35 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+//importando o Geolocation e o Http
+import { Geolocation } from '@ionic-native/geolocation';
+import { HttpModule } from '@angular/http';
+import { ListaPage } from '../pages/lista/lista';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    ListaPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    ListaPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Geolocation,
   ]
 })
 export class AppModule {}

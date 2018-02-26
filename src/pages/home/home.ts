@@ -50,10 +50,8 @@ export class HomePage {
       latitude:this.lat,
       longitude:this.lon
     };
-
- 
     this.http.post('http://localhost:8000/api/teste', JSON.stringify(body),{headers:headers}).toPromise().then(rs => {
-      console.log(rs._body);
+      console.log(rs);
     });
   }
 
@@ -64,7 +62,6 @@ export class HomePage {
         data:this.data
       });
     });
-
     
   }
 }

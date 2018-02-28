@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Http,Headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
-import { Header } from 'ionic-angular/components/toolbar/toolbar-header';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { ListaPage } from '../lista/lista';
+import { NavParams } from 'ionic-angular/navigation/nav-params';
 
 
 @Component({
@@ -19,7 +19,12 @@ export class HomePage {
   private lat = 0;
   private lon = 0;
 
-  constructor(public navCtrl: NavController, private geolocation: Geolocation, public http: Http) {
+  private user;
+
+  private nameSmall;
+  private descricaoSmall;
+
+  constructor(public navCtrl: NavController, private geolocation: Geolocation, public http: Http,public navParams: NavParams) {
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log(resp.coords.latitude);
       console.log(resp.coords.longitude);
@@ -30,6 +35,8 @@ export class HomePage {
      }).catch((error) => {
        console.log('Error getting location', error);
      });
+
+     this.user = this.navParams.get("user");
      
      /*
      let watch = this.geolocation.watchPosition();
@@ -42,6 +49,8 @@ export class HomePage {
 
   }
 
+
+
   teste() {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
@@ -50,18 +59,34 @@ export class HomePage {
       latitude:this.lat,
       longitude:this.lon
     };
-    this.http.post('http://localhost:8000/api/teste', JSON.stringify(body),{headers:headers}).toPromise().then(rs => {
+    this.http.post('http://10.0.0.110:8000/api/coord', JSON.stringify(body),{headers:headers}).toPromise().then(rs => {
       console.log(rs);
     });
   }
 
   teste2(){
-    this.http.get('http://localhost:8000/api/teste').toPromise().then(rs => {
+    this.http.get('http://10.0.0.110:8000/api/coord').toPromise().then(rs => {
       this.data = rs.json();
       this.navCtrl.push(ListaPage,{
         data:this.data
       });
     });
     
+  }
+
+  teste3() {
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+
+    let body = {
+      latitude:this.lat,
+      longitude:this.lon
+    };
+    this.http.post('http://10.0.0.110:8000/api/shorterDistance', JSON.stringify(body),{headers:headers}).toPromise().then(rs => {
+      let aux = rs.json();
+      this.nameSmall = aux.name;
+      this.descricaoSmall = aux.descricao;
+
+    });
   }
 }

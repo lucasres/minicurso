@@ -12,13 +12,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { HttpModule } from '@angular/http';
 import { ListaPage } from '../pages/lista/lista';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    ListaPage
+    ListaPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { ListaPage } from '../pages/lista/lista';
     MyApp,
     HomePage,
     ListPage,
-    ListaPage
+    ListaPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

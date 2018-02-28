@@ -8,6 +8,8 @@
 </ion-header>
 
 <ion-content padding>
+  <h3><ion-icon ios="ios-contact" md="md-contact"></ion-icon> Meus dados</h3>
+  <p>Nome - {{user.name}}</p>
   <h3> <ion-icon ios="ios-compass" md="md-compass"></ion-icon> Minha localização</h3>
 
   <p>
@@ -17,8 +19,14 @@
     Longitude: {{lon}}
   </p>
 
-  <button ion-button secondary (click)="teste()">Enviar</button>
+  <h3>   <ion-icon ios="ios-compass" md="md-compass"></ion-icon> Objeto de menor distancia</h3>
+  <p>{{nameSmall}}</p>
+  <p>{{descricaoSmall}}</p>
+  
+    <div id="phaser-example"></div>
 
+  <button ion-button secondary (click)="teste()">Enviar</button>
   <button ion-button secondary (click)="teste2()">Chamar</button>
+  <button ion-button secondary (click)="teste3()">Distancia</button>
 
 </ion-content>
